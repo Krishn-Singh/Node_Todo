@@ -15,6 +15,7 @@ const todoRoutes = require('./routes/todos');
 app.use("/api/v1",todoRoutes);
   
   app.use(express.json()); 
+  app.use(cors());
 
 app.listen(PORT, ()=>{ 
 console.log(`server has started runniing on ${PORT}` )           
