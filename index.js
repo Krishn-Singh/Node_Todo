@@ -13,23 +13,16 @@ const todoRoutes = require('./routes/todos');
 
 //mount the todo API routes 
 app.use("/api/v1",todoRoutes);
-
-const corsOptions = {
-    origin: 'http://localhost:8080',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-  };
   
-  app.use(cors(corsOptions));
-  app.use(express.json()); 
+app.use(express.json()); 
+
+//connect to db
+const dbConnect = require('./config/database');
+dbConnect(); 
 
 app.listen(PORT, ()=>{ 
 console.log(`server has started runniing on ${PORT}` )           
 })
-  app.options('/api/v1/createTodo', cors());
-//connect to db
-const dbConnect = require('./config/database');
-dbConnect();
 
 //default routes
 app.get("/", (req,res) => {
